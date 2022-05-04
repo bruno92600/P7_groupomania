@@ -17,7 +17,7 @@ db.connect((error) => {
   if(error) {
     throw error;
   } else {
-    console.log("connecté a groupomania (sql) avec l\'ID " + db.threadId);
+    console.log("connecté a groupomaniaaa (sql) avec l\'ID " + db.threadId);
   }
 });
 
