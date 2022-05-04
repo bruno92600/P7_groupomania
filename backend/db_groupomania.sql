@@ -1,23 +1,50 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
---
--- Host: localhost    Database: groupomania
--- ------------------------------------------------------
--- Server version	8.0.26
+/* création d'une table user */
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(70) NOT NULL,
+  `bio` text,
+  `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
+  `imageUrl` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Table structure for table `comment`
---
+/* création d'une table post */
+
+CREATE TABLE `post` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `attachment` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `imageUrl` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `title` (`title`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/* création d'une table comment */
+
+CREATE TABLE `comment` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL,
+  `postId` int NOT NULL,
+  `message` text NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `postId` (`postId`),
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -107,7 +134,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Admin','Groupomania','admin@hotmail.com','$2b$15$NvRkV7nhT//eyLLMlSwv0u9IzxcDAQAaX.fUk9W5ktsoYj.T/y/cS','Je suis l\'administrateur et le modérateur de ce réseau social. ',1,'http://localhost:4200/images/1631105958329adminajzajzjaizajklozop.png'),(2,'San','Goku','san.goku@hotmail.com','$2b$15$wqEFkRBMCU0P5h.PNFDp5OYm9EUyAlgFYl7NGAeC6.ejqNAqeONxq','',0,'http://localhost:4200/images/1631106561912goku.jpg'),(3,'Charles','Boyle','charles.boyle@hotmail.com','$2b$15$xN2ayiztQojzZyBTj.ioNOJQTO93N0QTb7yrzzNbEw90rRvYElxPW','',0,'http://localhost:4200/images/1631106222157fffd1a6232592170521ccd2ff57ea0ada78514a5.jpeg'),(4,'Provençal','Le Gaulois','perceval@hotmail.com','$2b$15$SeuxQgJogIO1hMdKbyaGa.ibAkKZkwuvYiPmHSxZ1KOIqO5Or5zVa','Chevalier de la table ronde, parfois on m\'appelle Perceval, en Aquitaine c\'est Provençal, et d\'autres fois c\'est juste Ducon. ',0,'http://localhost:4200/images/1631106388389perceval.jpg'),(5,'Jean','Neige','jean@hotmail.com','$2b$15$8lbYK87w3EBkuA1nxRvcJu2qAclSFe7wPlp1TZb21ijvAhOIVXOpa','Winterfell for ever. ',0,'http://localhost:4200/images/1631106649638Game-of-Thrones-Jon-Snow-sans-doute-de-retour-dans-la-saison-6.png'),(6,'Harry','Potter','harry.potter@hotmail.com','$2b$15$nSFE/AoTn0VdQfVfNLfWv.DR0Wg2F2CfgPZnUi.IRmvdsA79F0Njq','',0,'http://localhost:4200/images/16311070351911200629-le-jeune-daniel-radcliffe-dans-harry-potter-a-l-ecole-des-sorciers.jpg'),(7,'Martin','Dupont','martin.dupont@hotmail.com','$2b$15$X2FYKuUmM81UamoTRT6SsOsk/aQyFKxZUINzBsZxWahO6SSkyeq6G',NULL,0,'http://localhost:4200/images/imageProfilDéfaut.png');
+INSERT INTO `user` VALUES (1,'Admin','Groupomania','admin@hotmail.com','$2b$15$NvRkV7nhT//eyLLMlSwv0u9IzxcDAQAaX.fUk9W5ktsoYj.T/y/cS','Je suis administrateur et modérateur de ce réseau social.');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
