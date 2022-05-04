@@ -1,0 +1,208 @@
+// import de la bdd pour s'y connecter
+const db = require("../config_db");
+
+// import de jsonwebtoken
+const jwt = require("jsonwebtoken");
+
+// getAll pour recup tout les posts
+exports.getAllPost = function (req, res, next) {
+  db.promise()
+    .query(
+      `SELECT user.firstName, user.lastName, user.imageUrl, post.id, post.userId, 
+        post.title, post.content,post.imageUrl AS postImage, post.attachment, post.createdAt, COUNT(comment.postId) AS comments
+      FROM user 
+      JOIN post on user.id = post.userId 
+      LEFT JOIN comment on post.id = comment.postId
+      GROUP BY post.id
+      ORDER BY post.createdAt DESC 
+`
+    )
+    .then(function (data) {
+      res.status(200).json(data);
+    })
+    .catch(function (error) {
+      res.status(400).json({ error });
+    });
+};
+
+// getOne pour recup un seul post
+exports.getOnePost = function (req, res, next) {
+  let id = req.params.id;
+  db.query(
+    `SELECT post.id AS postId, post.title, post.content, post.imageUrl AS postImage, post.attachment, 
+            post.createdAt, post.updatedAt, 
+            user.firstName, user.lastName,user.imageUrl, user.id AS userId
+      FROM post
+      JOIN user
+      ON post.userId = user.id
+      WHERE post.id = ?;`,
+    [id],
+    function (error, result) {
+      if (error) {
+        throw error;
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+};
+
+// createPost pour créer une publication
+exports.createPost = function (req, res, next) {
+  const dateTime = new Date();
+
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.verify(token, process.env.token);
+  const userId = decodedToken.userId;
+
+  let article = {
+    userId: userId,
+    title: req.body.title,
+    content: req.body.content,
+    attachment: req.body.attachment,
+    createdAt: dateTime,
+  };
+
+  if (req.file) {
+    article.imageUrl = `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`;
+  }
+
+  db.query(`INSERT INTO post SET ?`, [article], function (error) {
+    if (error) {
+      throw error;
+    } else {
+      res.status(201).json({ message: "Article bien ajouté !" });
+    }
+  });
+};
+
+// deletePost pour supp une publication
+exports.deletePost = function (req, res, next) {
+  let id = req.params.id;
+
+  db.query("DELETE FROM post WHERE id = ?", [id], function (error, result) {
+    if (error) {
+      throw error;
+    } else {
+      res.status(201).json({ message: "Publication bien supprimé !" });
+    }
+  });
+};
+
+exports.commentPost = function (req, res, next) {
+  const dateTime = new Date();
+  const comment = {
+    userId: req.body.idOfUser,
+    postId: req.body.id,
+    message: req.body.comment,
+    createdAt: dateTime,
+  };
+
+  db.query(`INSERT INTO comment SET ? `, [comment], function (error) {
+    if (error) {
+      throw error;
+    } else {
+      res.status(201).json({ message: "Commentaire bien publié !" });
+    }
+  });
+};
+
+// pour recup un commentaire
+exports.getComment = function (req, res, next) {
+  let id = req.params.id;
+  // va chercher dans la bdd le ou les commentaires concernée
+  db.query(
+    `SELECT user.id AS userId, user.firstName, user.lastName, user.imageUrl, comment.id, comment.message, comment.createdAt, comment.updatedAt
+    FROM comment
+    JOIN user ON comment.userId = user.id
+    JOIN post ON comment.postId = post.id
+    WHERE post.id = ?
+    ORDER BY comment.createdAt ASC `,
+    [id],
+    function (error, result) {
+      if (error) {
+        throw error;
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+};
+
+// pour supp un commentaires
+exports.deleteComment = function (req, res, next) {
+  let id = req.params.id;
+  // va chercher dans la bdd le ou les commentaires concernée
+  db.query(
+    `DELETE FROM comment
+     WHERE id = ?`,
+    [id],
+    function (error) {
+      if (error) {
+        throw error;
+      } else {
+        res.status(201).json({ message: "Commentaire bien supprimé !" });
+      }
+    }
+  );
+};
+
+exports.likeUnlikePost = (req, res) => {
+  const { userId, postId } = req.body;
+  const sqlSelect = `SELECT * FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
+  db.query(sqlSelect, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(404).json({ err });
+      throw err;
+    }
+
+    if (result.length === 0) {
+      const sqlInsert = `INSERT INTO likes (user_id, post_id) VALUES (${userId}, ${postId})`;
+      db.query(sqlInsert, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(404).json({ err });
+          throw err;
+        }
+        res.status(200).json(result);
+      });
+    } else {
+      const sqlDelete = `DELETE FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
+      db.query(sqlDelete, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(404).json(err);
+          throw err;
+        }
+        res.status(200).json(result);
+      });
+    }
+  });
+};
+
+exports.postLikedByUser = (req, res) => {
+  const { userId, postId } = req.body;
+  const sql = `SELECT post_id, user_id FROM likes WHERE user_id = ${userId} AND post_id = ${postId}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(404).json({ err });
+      throw err;
+    }
+    res.status(200).json(result);
+  });
+};
+
+exports.countLikes = (req, res) => {
+  const { postId } = req.body;
+  const sqlInsert = `SELECT COUNT(*) AS total FROM likes WHERE likes.post_id = ${postId}`;
+  db.query(sqlInsert, (err, result) => {
+    if (err) {
+      res.status(404).json({ err });
+      throw err;
+    }
+    res.status(200).json(result);
+  });
+};
