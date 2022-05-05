@@ -1,9 +1,11 @@
-//imports React
+// import de react
 import React from "react";
+
+// import de route switch redirect
 import { Route, Switch, Redirect } from "react-router-dom";
-//imports composants
+// import de composant
 import AuthApi from "./AuthApi";
-//import pages
+// import des pages
 import Login from "../../pages/Login";
 import Signup from "../../pages/Signup";
 import AllArticles from "../../pages/AllArticles";
@@ -11,9 +13,11 @@ import Home from "../../pages/Home";
 import UserAccount from "../../pages/UserAccount";
 import OneArticle from "../../pages/OneArticle";
 
+// export de la fonction
 export default function Routes() {
   const Auth = React.useContext(AuthApi);
 
+  // construction des routes pour aller sur differentes pages
   return (
     <Switch>
       <ProtectedLogin path="/" exact component={Home} auth={Auth.auth} />

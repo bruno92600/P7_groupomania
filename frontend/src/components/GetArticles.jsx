@@ -1,9 +1,16 @@
+// import de react usestate et useeffect
 import React, { useState, useEffect } from "react";
+
+// import de link
 import { Link } from "react-router-dom";
+
+// import de react moment
 import Moment from "react-moment";
 import "moment/locale/fr";
 
+// export de la fonction 
 export default function GetArticles(props) {
+  // utilisation du localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   const token = "Bearer " + storage.token;
 
@@ -11,6 +18,7 @@ export default function GetArticles(props) {
 
   useEffect(
     function () {
+      // fetch pour se connecter a la bdd (sql) get ("recuperer/chercher")
       fetch("http://localhost:4200/api/post", {
         method: "GET",
         headers: {

@@ -1,10 +1,17 @@
+// import de react
 import React from "react";
+
+// import de js-cookie
 import Cookie from "js-cookie";
+
+// import de component
 import AuthApi from "../components/utils/AuthApi";
 
+// export de la fonction
 export default function UserDelete() {
   const Auth = React.useContext(AuthApi);
 
+  // utilisation du local storage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
 
@@ -15,6 +22,7 @@ export default function UserDelete() {
         "Voulez vous vraiment supprimer votre compte ? Cela supprimera également les articles que vous avez publiés."
       )
     ) {
+      // fetch pour se connecter a la bdd (sql) delete (supprimer)
       fetch("http://localhost:4200/api/users/userDelete", {
         method: "DELETE",
         headers: {

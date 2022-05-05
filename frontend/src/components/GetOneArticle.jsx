@@ -1,8 +1,15 @@
+// import de react usestate et useeffect
 import React, { useState, useEffect } from "react";
+
+// import de useparams usehistory et link
 import { useParams, useHistory, Link } from "react-router-dom";
+
+// import de react moment
 import Moment from "react-moment";
 
+// export de la fonction 
 export default function GetOneArticle() {
+  // utilisation de localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
 
@@ -14,6 +21,7 @@ export default function GetOneArticle() {
 
   useEffect(
     function () {
+      // fetch pour se connecter a la bdd (sql) get ("recuperer/chercher")
       fetch("http://localhost:4200/api/post/" + id, {
         method: "GET",
         headers: {
@@ -39,12 +47,14 @@ export default function GetOneArticle() {
     history.push("/articles");
   };
 
+  // pour supprimer un post/article
   const deleteArticle = function (e) {
     e.preventDefault();
     if (isAdmin === 1 || idOfUser === dataArticle.userId) {
       if (
         window.confirm("Voulez vous vraiment supprimer cette publication ?")
       ) {
+        // fetch pour se connecter a la bdd (sql) delete ("supprimer")
         fetch("http://localhost:4200/api/post/" + id, {
           method: "DELETE",
           headers: {

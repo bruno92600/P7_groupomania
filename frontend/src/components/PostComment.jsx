@@ -1,8 +1,15 @@
+// import de react et usestate
 import React, { useState } from "react";
+
+// import de use params
 import { useParams } from "react-router-dom";
+
+// import de useform
 import { useForm } from "react-hook-form";
 
+// export de la fonction
 export default function PostComment(props) {
+  // utilisation du localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
 
@@ -18,6 +25,7 @@ export default function PostComment(props) {
 
     const data = { idOfUser, id, comment };
 
+    // fetch pour se connecter a la bdd (sql) post ("poster/envoyer")
     fetch("http://localhost:4200/api/post/postComment", {
       method: "POST",
       headers: {

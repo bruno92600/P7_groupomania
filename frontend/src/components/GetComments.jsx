@@ -1,9 +1,18 @@
+// import de react usestate et useeffect
 import React, { useState, useEffect } from "react";
+
+// import de use params
 import { useParams } from "react-router-dom";
+
+// imort de react moment
 import Moment from "react-moment";
+
+// import de la page deletecomment
 import DeleteComment from "./DeleteComment";
 
+// export de la fonction 
 export default function GetComments(props) {
+  // utilisation du localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
 
@@ -13,6 +22,7 @@ export default function GetComments(props) {
 
   useEffect(
     function () {
+      // fetch pour se connecter a la bdd (sql) get ("recupere/chercher")
       fetch("http://localhost:4200/api/post/getComment/" + id, {
         method: "GET",
         headers: {

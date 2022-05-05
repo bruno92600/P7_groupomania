@@ -1,8 +1,15 @@
+// import de react 
 import React from "react";
+
+// import de axios
 import axios from "axios";
+
+// import de use form
 import { useForm } from "react-hook-form";
 
+// export de la fonction
 export default function CreateArticle(props) {
+  // utilisation du localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
   let firstName = storage.firstName;
@@ -24,6 +31,7 @@ export default function CreateArticle(props) {
     fd.append("image", data.image[0]);
     fd.append("attachment", data.attachment);
 
+    // axios post pour "poster/envoyer"
     axios
       .post("http://localhost:4200/api/post/article", fd, {
         headers: {

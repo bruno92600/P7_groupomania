@@ -1,5 +1,7 @@
+// import react useeffect et usestate
 import React, { useEffect, useState } from "react";
 
+// export de la fonction (banniere des users)
 export default function BannerUsers() {
   const storage = JSON.parse(localStorage.getItem("token"));
   const token = "Bearer " + storage.token;
@@ -8,6 +10,7 @@ export default function BannerUsers() {
 
   useEffect(
     function () {
+      // fetch pour se connecter a la bdd (sql) get ("recuperer/chercher")
       fetch("http://localhost:4200/api/users/getAllUser", {
         method: "GET",
         headers: {

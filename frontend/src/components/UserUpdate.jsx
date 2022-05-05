@@ -1,9 +1,19 @@
+// import de react usestate et useefect
 import React, { useState, useEffect } from "react";
+
+// import de axios
 import axios from "axios";
+
+// import de useform
 import { useForm } from "react-hook-form";
+
+// import de user delete
 import UserDelete from "./UserDelete";
 
+// export de la fonction 
 export default function UserUpdate() {
+  
+  // utilisation du localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
 
@@ -21,6 +31,7 @@ export default function UserUpdate() {
 
   useEffect(
     function data() {
+      // fetch pour se connecter a la bdd (sql) get ("attraper/chercher")
       fetch("http://localhost:4200/api/users/getuser", {
         method: "GET",
         headers: {
@@ -56,6 +67,7 @@ export default function UserUpdate() {
     fd.append("lastName", lastName);
     fd.append("bio", bio);
 
+    // methode post ("poster/envoyer")
     axios
       .post("http://localhost:4200/api/users/userUpdate", fd, {
         headers: {

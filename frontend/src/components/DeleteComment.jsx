@@ -1,6 +1,9 @@
+// import de react
 import React from "react";
 
+// export de la fonction
 export default function DeleteComment(props) {
+  // utilisation de localstorage
   const storage = JSON.parse(localStorage.getItem("token"));
   let token = "Bearer " + storage.token;
 
@@ -14,6 +17,7 @@ export default function DeleteComment(props) {
 
     if (props.idUser === idOfUser || isAdmin === 1) {
       if (window.confirm("Voulez vous vraiment supprimer ce commentaire ?")) {
+        // fetch pour se connecter a la bdd (sql) delete ("supprimer")
         fetch(
           "http://localhost:4200/api/post/getComment/delete/" + idCommentaire,
           {
