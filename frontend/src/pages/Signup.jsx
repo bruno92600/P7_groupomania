@@ -1,7 +1,13 @@
+// import de react et usestate
 import React, { useState } from "react";
+
+// import de redirect et link
 import { Redirect, Link } from "react-router-dom";
+
+// import de use form
 import { useForm } from "react-hook-form";
 
+// export de la function signup
 export default function Signup(props) {
   const {
     register,
@@ -12,6 +18,7 @@ export default function Signup(props) {
   const [redirect, setRedirect] = useState(false);
 
   const onSubmit = async function (data) {
+    // fecth qui va chercher dans la bdd (sql)
     await fetch("http://localhost:4200/api/users/signup", {
       method: "POST",
       headers: {
@@ -45,7 +52,7 @@ export default function Signup(props) {
       className="form-signin"
       id="formSignup"
     >
-      <h1 className="h3 mb-3 fw-normal">Inscrivez vous dès maintenant</h1>
+      <h1 className="h3 mb-3 fw-normal">Inscrivez vous !</h1>
       <div className="form-floating mb-2">
         <input
           autoFocus
@@ -115,7 +122,7 @@ export default function Signup(props) {
         />
         {errors.password && (
           <p className="text-center text-danger mt-1">
-            Attention: Votre mot de passe doit contenir au moins 8 caractères !
+            Attention: Votre mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre !
           </p>
         )}
         <label htmlFor="floatingPassword">Mot de passe</label>
@@ -127,14 +134,14 @@ export default function Signup(props) {
         <p> Vous avez déja un compte ?</p>
         <Link to="/login">
           {" "}
-          <button className="btn btn-outline-danger">Connectez vous</button>
+          <button className="btn btn-outline-dange">Connectez vous</button>
         </Link>
       </div>
       <div className="mt-3 text-end">
-        <p>Retour à l'accueil</p>
+        <p>Accueil</p>
         <Link to="/">
-          <button className="btn btn-outline-success">
-            <i className="bi bi-arrow-90deg-left"></i>
+          <button className="btn btn-outline-succes">
+            <i className="bi bi-box-arrow-in-left"></i>
           </button>
         </Link>
       </div>

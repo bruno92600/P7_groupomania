@@ -1,14 +1,25 @@
+// import de react 
 import React from "react";
+
+// import de components
 import AuthApi from "../components/utils/AuthApi";
+
+// import de link
 import { Link } from "react-router-dom";
+
+// imoort de useform
 import { useForm } from "react-hook-form";
+
+// import de js-cookie
 import Cookie from "js-cookie";
 
+// export de la fonction
 export default function Login() {
   const Auth = React.useContext(AuthApi);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = function (data) {
+    // fetch qui va chercher dans la bdd (sql)
     fetch("http://localhost:4200/api/users/login", {
       method: "POST",
       headers: {
@@ -41,7 +52,7 @@ export default function Login() {
       className="form-signin"
       id="formLogin"
     >
-      <h1 className="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
+      <h1 className="h3 mb-3 fw-normal">Connectez vous</h1>
       <div className="form-floating mb-2">
         <input
           autoFocus
@@ -75,10 +86,10 @@ export default function Login() {
         </Link>
       </div>
       <div className="mt-3 text-end">
-        <p>Retour à l'accueil</p>
+        <p>Accueil</p>
         <Link to="/">
           <button className="btn btn-outline-success">
-            <i className="bi bi-arrow-90deg-left"></i>
+            <i className="bi bi-box-arrow-in-left"></i>
           </button>
         </Link>
       </div>

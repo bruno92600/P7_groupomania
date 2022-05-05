@@ -1,26 +1,35 @@
+// import des react pour useeffect et usestate 
 import React, { useEffect, useState } from "react";
+
+// import de router
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Cookie from "js-cookie";
-//import components
+
+//import des components
 import Routes from "./components/utils/Routes.jsx";
 import AuthApi from "./components/utils/AuthApi.jsx";
 import Logout from "./components/utils/Logout.jsx";
+
 //import css
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./app.css";
-//import logo
+
+//import des logos
 import logo from "./assets/logo.png";
 import icon from "./assets/icon.png";
 
+// export de app
 export default function App() {
   const [auth, setAuth] = useState(false);
 
+  // indique qu'il doit executer d'autre chose après chaque affichage
   useEffect(function () {
     if (Cookie.get("user")) {
       setAuth(true);
     }
   }, []);
 
+  // cnstruction du header (haut de page)
   let navLink;
   if (auth === true) {
     navLink = (

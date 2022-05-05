@@ -14,6 +14,29 @@
   z-index: 2;
 }
 
+.mt-3 p {
+  text-align: center;
+}
+
+.btn-outline-danger {
+  margin-right: 37%;
+}
+
+.btn-outline-success {
+  margin-right: 41%;
+}
+
+.btn-outline-succes {
+  border: 2px green solid;
+  margin-right: 41%;
+  color: green;
+}
+
+.btn-outline-dange {
+  border: 2px red solid;
+  margin-right: 30%;
+}
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -30,13 +53,15 @@ img {
   height: 30px;
 }
 
+.img-fluid {
+  width: 70%;
+}
+
 .card {
   width: 50%;
   margin: auto;
-}
-
-.card-header {
-  align-items: center;
+  text-align: center;
+  border-radius: 10px;
 }
 
 #formUser {
@@ -49,6 +74,11 @@ h6 {
 
 h1 {
   text-align: center;
+}
+
+.bi {
+  margin-left: 5px;
+  font-size: 30px;
 }
 
 .formBio {
@@ -72,6 +102,11 @@ h1 {
   min-width: 330px;
 }
 
+.form-label {
+  width: 100%;
+  padding-left: 43%;
+}
+
 textarea.formContent {
   min-height: 150px;
 }
@@ -85,25 +120,23 @@ a:link {
 }
 
 #linkSignup {
-  font-size: 20px;
-  color: rgb(187, 17, 17);
+  font-size: 30px;
+  color: red;
 }
 
 #linkLogin {
-  font-size: 20px;
-  color: blue;
+  font-size: 30px;
+  color: rgb(135, 63, 190);
 }
 
 #linkSignup:hover {
   display: inline-block;
-  margin-left: 20px;
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 #linkLogin:hover {
   display: inline-block;
-  margin-left: 20px;
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .cardHome {

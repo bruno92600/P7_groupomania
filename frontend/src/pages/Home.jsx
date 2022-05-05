@@ -1,32 +1,36 @@
+// import de react
 import React from "react";
+
+// import de link
 import { Link } from "react-router-dom";
 
-import balloons from "../assets/homeBalloons.png";
+// imort de icons
+import icons from "../assets/entreprisegroupo.png";
 
+// construction de la page d'accueil
 const Home = () => {
   return (
     <React.Fragment>
       <div className="card cardHome">
         <div className="card-header">
-          <h2>Bienvenue sur Groupomania !</h2>
+          <h2>Groupomania !</h2>
         </div>
         <div className="card-body">
           <p>
-            Groupomania est un réseau social d'entreprise ou vous pourrez
-            échanger avec vos collègues !
+            Le seul réseau social d'entreprise pour échanger entre collègues
           </p>
         </div>
         <div className="card-footer">
           <p>
-            Si vous avez déja un compte,{" "}
+            {" "}
             <Link id="linkLogin" to="/login">
-              connectez vous !
+              connectez vous
             </Link>
           </p>
           <p>
-            Si vous souhaitez vous inscrire{" "}
+           {" "}
             <Link id="linkSignup" to="/signup">
-              c'est par la !
+              Inscrivez vous
             </Link>
           </p>
         </div>
@@ -35,12 +39,13 @@ const Home = () => {
       <div className=" text-center">
         <img
           className="img-fluid"
-          src={balloons}
-          alt="Des personnages type cartoon pour embellir la page accueil du site"
+          src={icons}
+          alt="icons de l'entreprise"
         />
       </div>
     </React.Fragment>
   );
 };
 
+// export de la page d'accueil
 export default Home;

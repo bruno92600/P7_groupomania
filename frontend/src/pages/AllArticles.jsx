@@ -1,12 +1,16 @@
+// import de react et usestate
 import React, { useState } from "react";
+
+//import des components
 import BannerUsers from "../components/BannerUsers";
-//import components
 import CreateArticle from "../components/CreateArticle";
 import GetArticles from "../components/GetArticles";
 
+// export de la fonction
 export default function Articles() {
   const [articles, setArticles] = useState(0);
 
+  // nous renvoie sur d'autres pages
   return (
     <div>
       <div className="bannerUsers">

@@ -1,3 +1,4 @@
+// reportwebvitals permet de mesurer l'experience user (performances, interactivité, plaisir)
 const reportWebVitals = onPerfEntry => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
