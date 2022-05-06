@@ -13,11 +13,11 @@ const Home = () => {
     <React.Fragment>
       <div className="card cardHome">
         <div className="card-header">
-          <h2>Groupomania !</h2>
+          <h2>Groupomania</h2>
         </div>
         <div className="card-body">
           <p>
-            Le seul réseau social d'entreprise pour échanger entre collègues
+            Le seul réseau social d'entreprise pour échanger entre collègues, et se connaitre davantage !
           </p>
         </div>
         <div className="card-footer">

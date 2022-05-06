@@ -80,7 +80,7 @@ export default function CreateArticle(props) {
         />
         {errors.title && (
           <p className="text-center text-danger mt-1">
-            Le titre ne peut pas être vide !
+            Le titre ne peut être vide !
           </p>
         )}{" "}
         <label htmlFor="floatingInput">Titre de votre post</label>
@@ -95,7 +95,7 @@ export default function CreateArticle(props) {
         />
         {errors.content && (
           <p className="text-center text-danger mt-1">
-            Le contenu ne peut pas être vide!
+            Le contenu ne peut être vide!
           </p>
         )}{" "}
         <label htmlFor="floatingInput">Contenu</label>

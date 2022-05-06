@@ -34,7 +34,7 @@ export default function Signup(props) {
           alert(result.error.sqlMessage);
         } else {
           setRedirect(true);
-          alert("Vous pouvez dès à present vous connectez !");
+          alert("Connectez vous !");
         }
       })
       .catch(function (error) {
@@ -131,7 +131,7 @@ export default function Signup(props) {
         S'inscrire{" "}
       </button>
       <div className="mt-3 text-end">
-        <p> Vous avez déja un compte ?</p>
+        <p> Vous avez déja un compte chez nous ?</p>
         <Link to="/login">
           {" "}
           <button className="btn btn-outline-dange">Connectez vous</button>

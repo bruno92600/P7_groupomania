@@ -19,7 +19,7 @@ export default function UserDelete() {
     e.preventDefault();
     if (
       window.confirm(
-        "Voulez vous vraiment supprimer votre compte ? Cela supprimera également les articles que vous avez publiés."
+        "Voulez vous vraiment supprimer votre compte ?"
       )
     ) {
       // fetch pour se connecter a la bdd (sql) delete (supprimer)

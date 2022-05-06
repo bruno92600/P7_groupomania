@@ -1,7 +1,7 @@
 // import react useeffect et usestate
 import React, { useEffect, useState } from "react";
 
-// export de la fonction (banniere des users)
+// export de la fonction (banniere d'affichage des users)
 export default function BannerUsers() {
   const storage = JSON.parse(localStorage.getItem("token"));
   const token = "Bearer " + storage.token;
@@ -37,7 +37,7 @@ export default function BannerUsers() {
     return (
       <div className="card" style={{ width: "300px" }}>
         <div className="card-header">
-          <h6>Les autres utilisateurs présents sur Groupomania !</h6>
+          <h6>Voici vos collègues sur Groupomania !</h6>
         </div>
 
         <ul>

@@ -100,7 +100,7 @@ export default function UserUpdate() {
       </div>
       <div className="mb-3 text-left">
         <label htmlFor="formFile" className="form-label">
-          <strong>Avatar</strong>
+          <strong>Photo de profil</strong>
         </label>
         <input className="form-control file" type="file" name="image" />
       </div>
@@ -151,7 +151,7 @@ export default function UserUpdate() {
             setBio(e.target.value);
           }}
         />
-        <label htmlFor="floatingPassword">Votre bio</label>
+        <label htmlFor="floatingPassword">Parlez nous de vous</label>
       </div>
 
       <div className="d-lg-flex justify-content-evenly text-center mt-4 mb-3">

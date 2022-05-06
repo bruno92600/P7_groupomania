@@ -32,6 +32,7 @@ export default function Login() {
       })
       .then(function (result) {
         localStorage.setItem("token", JSON.stringify(result));
+        // utilisation du local storage
         let storage = JSON.parse(localStorage.getItem("token"));
         if (storage.token === undefined) {
           Auth.setAuth(false);
@@ -80,7 +81,7 @@ export default function Login() {
         Se connecter{" "}
       </button>
       <div className="mt-3 text-end">
-        <p>Vous n'avez pas encore de compte ? </p>
+        <p>Vous n'avez pas encore de compte chez nous ? Ne perdez pas de temps 😀 </p>
         <Link to="/signup">
           <button className="btn btn-outline-danger">S'inscrire</button>
         </Link>

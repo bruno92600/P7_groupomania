@@ -38,11 +38,11 @@ export default function App() {
           <div>
             <Link to="/articles" className="nav-link">
               {window.screen.width > 500 ? (
-                <img src={logo} alt="Le logo de l'entreprise Groupomania" />
+                <img src={logo} alt="Le logo de Groupomania" />
               ) : (
                 <img
                   src={icon}
-                  alt="Le logo miniature de l'entreprise Groupomania"
+                  alt="Le logo miniature de Groupomania"
                 />
               )}
             </Link>
@@ -72,11 +72,11 @@ export default function App() {
           <div>
             <Link to="/" className="nav-link">
               {window.screen.width > 500 ? (
-                <img src={logo} alt="Le logo de l'entreprise Groupomania" />
+                <img src={logo} alt="Le logo de Groupomania" />
               ) : (
                 <img
                   src={icon}
-                  alt="Le logo miniature de l'entreprise Groupomania"
+                  alt="Le logo miniature de Groupomania"
                 />
               )}
             </Link>
