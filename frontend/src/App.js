@@ -54,7 +54,7 @@ export default function App() {
           >
             <Nav className="d-flex align-items-end">
               <Link to="/articles" className="nav-link mx-4">
-                Tous les articles
+                Tous les posts
               </Link>
               <Link to="/user" className="nav-link mx-4">
                 Mon compte

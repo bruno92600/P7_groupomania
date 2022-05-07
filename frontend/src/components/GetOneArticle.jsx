@@ -91,7 +91,7 @@ export default function GetOneArticle() {
 
           <Link to="/articles">
             <button className="btn btn-outline-primary mx-3">
-              <i className="bi bi-arrow-90deg-left"></i>
+              <i className="bi bi-chevron-left"></i>
             </button>
           </Link>
         </div>

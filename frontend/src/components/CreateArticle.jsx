@@ -55,7 +55,7 @@ export default function CreateArticle(props) {
       className="form-signin"
       id="formCreateArticle"
     >
-      <h2 className="h3 mb-3 fw-normal">Partager un nouvel article</h2>
+      <h2 className="h3 mb-3 fw-normal">Partager un nouveau post</h2>
       <div className="d-flex mb-2 align-items-center">
         <img
           src={image}

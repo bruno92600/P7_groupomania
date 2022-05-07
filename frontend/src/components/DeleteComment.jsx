@@ -55,7 +55,7 @@ export default function DeleteComment(props) {
         type="button"
         className="btn btn-outline-danger d-flex"
       >
-        <i className="bi bi-x-lg"></i>
+        <i className="bi bi-trash"></i>
       </button>
     </div>
   );

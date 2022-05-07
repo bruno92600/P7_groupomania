@@ -68,7 +68,7 @@ export default function GetArticles(props) {
             </span>
             <Link to={`/article/${article.id}`}>
               <button type="button" className="btn btn-outline-primary d-flex">
-                <i className="bi bi-plus-lg"></i>
+                <i className="bi bi-trash"></i>
               </button>
             </Link>
           </div>
