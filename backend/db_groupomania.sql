@@ -1,3 +1,5 @@
+/* Voici ma base de creation sql composé de 3 tables et plusieurs colonne dans chacunne d'elle */
+
 /* création d'une table user */
 
 CREATE TABLE `user` (
