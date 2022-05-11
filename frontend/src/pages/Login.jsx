@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 // import de js-cookie
 import Cookie from "js-cookie";
 
-// export de la fonction
+// export de la fonction login (se connecter avec un compte existant)
 export default function Login() {
   const Auth = React.useContext(AuthApi);
   const { register, handleSubmit } = useForm();

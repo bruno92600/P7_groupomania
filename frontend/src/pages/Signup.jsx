@@ -7,7 +7,7 @@ import { Redirect, Link } from "react-router-dom";
 // import de use form
 import { useForm } from "react-hook-form";
 
-// export de la function signup
+// export de la function signup (création d'un compte)
 export default function Signup(props) {
   const {
     register,
