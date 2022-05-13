@@ -97,7 +97,7 @@ exports.login = function (req, res, next) {
         throw error;
       } else {
         if (result.length === 0) {
-          // erreur si l'utilisateur n'est pazs dans la bdd
+          // erreur si l'utilisateur n'est pas dans la bdd
           res.status(400).json({ message: "Utilisateur non trouvé." });
         } else {
           bcrypt
@@ -227,7 +227,7 @@ exports.userDelete = function (req, res, next) {
   );
 };
 
-// voir les articles d'un utilisateur
+// voir les articles/posts d'un utilisateur
 exports.userArticles = function (req, res, next) {
   const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.token);
