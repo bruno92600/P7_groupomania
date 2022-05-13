@@ -47,3 +47,14 @@ CREATE TABLE `comment` (
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/* pouvoir modifier une "ligne" user */
+ALTER TABLE nom_table
+MODIFY nom_colonne type_donnees
+
+/* pouvoir supprimer une "ligne d'une table */
+DELETE FROM nom_table WHERE id = 1
+
+/* pouvpir supprimer une colonne */
+ALTER TABLE nom_table
+DROP COLUMN nom_colonne
