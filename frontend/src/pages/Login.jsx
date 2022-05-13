@@ -53,7 +53,7 @@ export default function Login() {
       className="form-signin"
       id="formLogin"
     >
-      <h1 className="h3 mb-3 fw-normal">Connectez vous</h1>
+      <h1 className="h3 mb-3 fw-normal" >Connectez vous</h1>
       <div className="form-floating mb-2">
         <input
           autoFocus

@@ -23,13 +23,13 @@ const Home = () => {
         <div className="card-footer">
           <p>
             {" "}
-            <Link id="linkLogin" to="/login">
+            <Link id="linkLogin" to="/login" alt="connectez vous">
               connectez vous
             </Link>
           </p>
           <p>
            {" "}
-            <Link id="linkSignup" to="/signup">
+            <Link id="linkSignup" to="/signup" alt="inscrivez vous">
               Inscrivez vous
             </Link>
           </p>
@@ -40,7 +40,7 @@ const Home = () => {
         <img
           className="img-fluid"
           src={icons}
-          alt="icons de l'entreprise"
+          alt="icons et description de l'entreprise de l'entreprise"
         />
       </div>
     </React.Fragment>
